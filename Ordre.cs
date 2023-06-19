@@ -7,37 +7,57 @@ using System.Threading.Tasks;
 
 namespace Webshop
 {
-    public class Ordre
+    public class Order
     {
         
-        string vægt;
-        string dato;
-        string forsendelses_adresse;
-        int kunde_id;
-        public Ordre(string vægt, string dato, string forsendelses_adresse, int kunde_id) 
+        string weight;
+        string date;
+        string delivery_address;
+        int customer_id;
+        SqlConnection con;
+        public Order(string weight, string date, string delivery_address, int customer_id, string conString) 
         {
-            this.vægt = vægt; 
-            this.dato = dato;
-            this.forsendelses_adresse = forsendelses_adresse;
-            this.kunde_id = kunde_id;
-            
+            this.weight = weight; 
+            this.date = date;
+            this.delivery_address = delivery_address;
+            this.customer_id = customer_id;
+            this.con = new SqlConnection(conString);
+
+
         }
 
         public void AddToSqlServer()
         {
-            string conString = "Data Source=DESKTOP-I5TRKAB\\SQLEXPRESS;Initial Catalog=Webshop;Integrated Security=True";
+         //    = "Data Source=DESKTOP-I5TRKAB\\SQLEXPRESS;Initial Catalog=Webshop;Integrated Security=True";
             try
             {
-                using (SqlConnection con = new SqlConnection(conString))
-                {
+               
+                
                     con.Open();
-                    string query = $"INSERT INTO Ordre VALUES('{vægt}', '{dato}', '{forsendelses_adresse}', {kunde_id}) ";
+                    string query = $"INSERT INTO Order VALUES('{weight}', '{date}', '{delivery_address}', {customer_id}) ";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                }
+                
             }catch (Exception ex)
+            {
+
+            }
+        }
+        public void SetMailToKundeMail()
+        {
+            try
+            {
+            
+               
+                    con.Open();
+                  //  string query = @"UPDATE Order";
+                    
+
+                
+            }
+            catch (Exception ex)
             {
 
             }

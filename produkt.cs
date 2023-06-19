@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Webshop
 {
-    internal class Vare
+    internal class produkt
     {
 
-        string navn;
-        string antal;
-        int vare_id;
-        public Vare(string navn, string antal, int vare_id)
+        string name;
+        string amount;
+        int order_id;
+        public produkt(string name, string amount, int order_id)
         {
-            this.navn = navn;
-            this.antal = antal;
-            this.vare_id = vare_id;
+            this.name = name;
+            this.amount = amount;
+            this.order_id = order_id;
 
         }
 
@@ -30,7 +30,7 @@ namespace Webshop
                 using (SqlConnection con = new SqlConnection(conString))
                 {
                     con.Open();
-                    string query = $"INSERT INTO Vare VALUES('{navn}', '{antal}', '{vare_id}' ";
+                    string query = $"INSERT INTO product VALUES('{name}', '{amount}', '{order_id}' ";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.ExecuteNonQuery();
                     con.Close();

@@ -20,18 +20,20 @@ namespace Webshop
             {
                 using (SqlConnection con = new SqlConnection(conString))
                 {
-                    string query = "SELECT Navn FROM Kunde"; 
+                    string query = "SELECT id, name FROM customer"; 
                     SqlCommand cmd = new SqlCommand(query, con);
 
                     con.Open();
-
+                   
                     SqlDataReader dr = cmd.ExecuteReader();
                             
                     if (dr.HasRows) 
                     {
                         while (dr.Read())
                         {
-                            Console.WriteLine(dr[0]);
+                            int id = dr.GetInt32(0);
+                            string navn = dr.GetString(1);
+                            Console.WriteLine(id + "," + navn);
                         }
                     }
                     dr.Close();

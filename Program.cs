@@ -1,4 +1,7 @@
 ﻿using Webshop;
+string conString = "Data Source=DESKTOP-I5TRKAB\\SQLEXPRESS;Initial Catalog=Webshop;Integrated Security=True";
 
-Ordre ordre123 = new Ordre("test", "12345", "test2", 1);
-ordre123.AddToSqlServer();
+Customer customer = new Customer("Kim", "123465", 1235, "135@test.dk", conString);
+// WebshopApp webshop = new WebshopApp("Data Source=DESKTOP-I5TRKAB\\SQLEXPRESS;Initial Catalog=Webshop;Integrated Security=True");
+customer.AddCustomerToSql();
+customer.ChangeName("Torben");
